@@ -16,7 +16,8 @@ export default function Home() {
 
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+      <h1>Habitrack</h1>
+      <p>The App that helps you stay on track with your habits!</p>
     </div>
   )
 }
