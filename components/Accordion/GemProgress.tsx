@@ -1,11 +1,14 @@
-import Icon from "./Icon"
 import TaskTally from "./TaskTally"
+import { GiFireGem } from "react-icons/gi"
 
-const GemProgress = () => {
+
+const GemProgress = (props: {
+  tasksCompleted: number
+}) => {
   return (
     <figure>
-      <Icon url="something" />
-      <Icon url="something" />
+      <GiFireGem />
+      <GiFireGem />
       <TaskTally />
     </figure>
   )
