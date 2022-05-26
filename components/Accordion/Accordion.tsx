@@ -1,3 +1,4 @@
+import styles from "./Accordion.module.css"
 import { WiSunrise, WiDaySunny } from "react-icons/wi"
 import {BsMoonStars} from "react-icons/bs"
 import GemProgress from "./GemProgress"
@@ -22,10 +23,12 @@ const Accordion = ( props: {
 }) => {
   const [isOpen, setIsOpen] = useState (true);
   return (
-    <details {... isOpen ? "open" : ""} >
-      <summary onClick={() => setIsOpen(isOpen => !isOpen)}>
-        {getTitleIcon(props.title)}
-        <h2>{props.title}</h2>
+    <details {... isOpen ? "open" : ""} className={styles.details}>
+      <summary onClick={() => setIsOpen(isOpen => !isOpen)} className={styles.summary}>
+        <div className={styles.titleContainer}>
+          {getTitleIcon(props.title)}
+          <h2>{props.title}</h2>
+        </div>
         <GemProgress tasksCompleted={0} />
         <Toggle isOpen={isOpen}/>
       </summary>

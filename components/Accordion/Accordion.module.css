@@ -1,0 +1,29 @@
+.details {
+  border: 2px solid gainsboro;
+  margin: 16px;
+  max-width: 60ch;
+  padding: 8px;
+}
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.summary h2, .summary figure {
+  margin: 0;
+}
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+}
+
+.summary figure {
+display: flex;
+align-items: center;
+gap: 4px;
+}
+.summary figure svg {
+  position: relative;
+  top: 2px;
+}
