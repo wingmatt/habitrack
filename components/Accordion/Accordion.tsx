@@ -1,10 +1,22 @@
-import { WiSunrise } from "react-icons/wi"
+import { WiSunrise, WiDaySunny } from "react-icons/wi"
+import {BsMoonStars} from "react-icons/bs"
 import GemProgress from "./GemProgress"
 import Toggle from "./Toggle"
 import { useState } from "react"
 
+const getTitleIcon = (title: "Morning" | "Daytime" | "Evening") => {
+  switch (title) {
+    case "Morning":
+      return <WiSunrise />;
+    case "Daytime":
+      return <WiDaySunny />;
+    case "Evening":
+      return <BsMoonStars />;
+  }
+}
+
 const Accordion = ( props: {
-  title: string,
+  title: "Morning" | "Daytime" | "Evening",
   tasks: string[],
   iconUrl: string,
 }) => {
@@ -12,7 +24,7 @@ const Accordion = ( props: {
   return (
     <details {... isOpen ? "open" : ""} >
       <summary onClick={() => setIsOpen(isOpen => !isOpen)}>
-        <WiSunrise />
+        {getTitleIcon(props.title)}
         <h2>{props.title}</h2>
         <GemProgress tasksCompleted={0} />
         <Toggle isOpen={isOpen}/>
