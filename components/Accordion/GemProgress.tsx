@@ -1,5 +1,5 @@
 import TaskTally from "./TaskTally"
-import { GiFireGem } from "react-icons/gi"
+import { FaGem } from "react-icons/fa"
 
 
 const GemProgress = (props: {
@@ -7,8 +7,8 @@ const GemProgress = (props: {
 }) => {
   return (
     <figure>
-      <GiFireGem />
-      <GiFireGem />
+      <FaGem />
+      <FaGem />
       <TaskTally />
     </figure>
   )
