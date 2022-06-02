@@ -17,9 +17,9 @@ export default function Home() {
 
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      <Accordion title="Morning" iconUrl='something' tasks={["howdy"]}></Accordion>
-      <Accordion title="Daytime" iconUrl='something' tasks={["howdy"]}></Accordion>
-      <Accordion title="Evening" iconUrl='something' tasks={["howdy"]}></Accordion>
+      <Accordion title="Morning" iconUrl='something' tasks={[{complete: false, name: "mornin'"}, {complete: true, name: "Second morning thing"}]}></Accordion>
+      <Accordion title="Daytime" iconUrl='something' tasks={[{complete: false, name: "howdy'"}]}></Accordion>
+      <Accordion title="Evening" iconUrl='something' tasks={[{complete: false, name: "evenin'"}]}></Accordion>
     </div>
   )
 }

@@ -3,7 +3,10 @@ import { WiSunrise, WiDaySunny } from "react-icons/wi"
 import {BsMoonStars} from "react-icons/bs"
 import GemProgress from "./GemProgress"
 import Toggle from "./Toggle"
+import Task from "./Task"
 import { useState } from "react"
+import { TaskInterface } from '../../types'
+
 
 const getTitleIcon = (title: "Morning" | "Daytime" | "Evening") => {
   switch (title) {
@@ -18,10 +21,10 @@ const getTitleIcon = (title: "Morning" | "Daytime" | "Evening") => {
 
 const Accordion = ( props: {
   title: "Morning" | "Daytime" | "Evening",
-  tasks: string[],
+  tasks: TaskInterface[],
   iconUrl: string,
 }) => {
-  const [isOpen, setIsOpen] = useState (true);
+  const [isOpen, setIsOpen] = useState (false);
   return (
     <details {... isOpen ? "open" : ""} className={styles.details}>
       <summary onClick={() => setIsOpen(isOpen => !isOpen)} className={styles.summary}>
@@ -32,7 +35,9 @@ const Accordion = ( props: {
         <GemProgress tasksCompleted={0} />
         <Toggle isOpen={isOpen}/>
       </summary>
-      Tasks will go here someday!
+      <ul role="list">
+        {props.tasks.map(( task )=> <Task complete={task.complete} name={task.name} />)}
+      </ul>
     </details>
     )
 }
