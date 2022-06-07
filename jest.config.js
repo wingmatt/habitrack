@@ -6,6 +6,6 @@ module.exports = {
     "^.+\\.[t|j]sx?$": "babel-jest"
   },
   moduleNameMapper: {
-    '\\.(css)$': '<rootDir>/__tests__/__mocks__/styleMock.js',
+    '\\.(css)$': '<rootDir>/__mocks__/styleMock.js',
   }
 };
