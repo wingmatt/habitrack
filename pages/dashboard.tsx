@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
-import Auth from '../components/Auth'
-import Account from '../components/Account'
 import Accordion from '../components/Accordion/'
 
-export default function Home() {
+export default function Dashboard() {
   const [session, setSession] = useState(null)
 
   useEffect(() => {
@@ -14,12 +12,11 @@ export default function Home() {
       setSession(session)
     })
   }, [])
-
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      <Accordion title="Morning" iconUrl='something' tasks={[{complete: false, name: "mornin'"}, {complete: true, name: "Second morning thing"}]}></Accordion>
-      <Accordion title="Daytime" iconUrl='something' tasks={[{complete: false, name: "howdy'"}]}></Accordion>
-      <Accordion title="Evening" iconUrl='something' tasks={[{complete: false, name: "evenin'"}]}></Accordion>
+      <Accordion key="1" title="Morning" iconUrl='something' tasks={[{complete: false, name: "mornin'"}, {complete: true, name: "Second morning thing"}]}></Accordion>
+      <Accordion key="2" title="Daytime" iconUrl='something' tasks={[{complete: false, name: "howdy'"}]}></Accordion>
+      <Accordion key="3" title="Evening" iconUrl='something' tasks={[{complete: false, name: "evenin'"}]}></Accordion>
     </div>
   )
 }
