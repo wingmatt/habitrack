@@ -14,7 +14,6 @@ export default function Account({ session }) {
     try {
       setLoading(true)
       const user = supabase.auth.user()
-      console.log(user);
       let { data, error, status } = await supabase
         .from('profiles')
         .select(`username, timezone, streak, gems`)
