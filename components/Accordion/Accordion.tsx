@@ -36,7 +36,7 @@ const Accordion = ( props: {
         <Toggle isOpen={isOpen}/>
       </summary>
       <ul role="list">
-        {props.tasks.map(( task )=> <Task complete={task.complete} name={task.name} />)}
+        {props.tasks.map(( task, index )=> <Task key={index} complete={task.complete} name={task.name} />)}
       </ul>
     </details>
     )
