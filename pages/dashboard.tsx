@@ -1,4 +1,4 @@
-import AuthRequired from '../components/AuthRequired'
+import AuthRequired from '../helpers/AuthRequired'
 import Accordion from '../components/Accordion/'
 
 export default function Dashboard() {
