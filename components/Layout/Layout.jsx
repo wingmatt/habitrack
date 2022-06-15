@@ -1,11 +1,12 @@
 import {FaUserAstronaut} from 'react-icons/fa'
+import styles from './Layout.module.css'
 
-export default function Layout () {
+export default function Layout ({children}) {
 
   return (
     <>
-      <header>
-        <h1>Habitrack</h1>
+      <header className={styles.header}>
+        <h1><a href="/dashboard">Habitrack</a></h1>
         <nav>
           <ul role="list">
             <li>
@@ -16,14 +17,15 @@ export default function Layout () {
         </nav>
         <FaUserAstronaut/>
       </header>
-      <main>
+      <main className={styles.main}>
         {children}
       </main>
-      <footer>
+      <footer className={styles.footer}>
         <ul role="list">
           <li>
-            <a href="/tasks/new">New Task</a>
-            <a href="/tasks/manage">Manage Tasks</a>
+            <a href="/habits/new">New Habit</a>
+          </li><li>
+            <a href="/habits/">All Habits</a>
           </li>
         </ul>
       </footer>
