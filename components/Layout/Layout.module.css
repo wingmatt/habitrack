@@ -1,0 +1,32 @@
+.header, .footer {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  background: whitesmoke;
+  
+}
+.header *, .footer * {
+  margin: 0;
+  padding: 0;
+
+}
+.header ul, .footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+.header {
+  top: 0;
+}
+.footer {
+  bottom: 0;
+}
+.footer ul {
+  width: 100%;
+}
+.main {
+  padding-top: 3rem;
+}
