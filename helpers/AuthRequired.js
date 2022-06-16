@@ -13,7 +13,6 @@ export default function AuthRequired({ children }) {
     });
   }, []);
   useEffect(() => {
-    console.log(session);
     if (session === null) router.push("/profile");
   }, [session]);
   if (session) {
