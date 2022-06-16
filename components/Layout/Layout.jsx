@@ -1,22 +1,11 @@
-import {FaUserAstronaut} from 'react-icons/fa'
+import Header from './Header'
 import styles from './Layout.module.css'
 
 export default function Layout ({children}) {
 
   return (
     <>
-      <header className={styles.header}>
-        <h1><a href="/dashboard">Habitrack</a></h1>
-        <nav>
-          <ul role="list">
-            <li>
-              <a href="/dashboard">Dashboard</a>
-            </li>
-            
-          </ul>
-        </nav>
-        <FaUserAstronaut/>
-      </header>
+      <Header/>
       <main className={styles.main}>
         {children}
       </main>

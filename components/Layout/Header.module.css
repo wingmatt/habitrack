@@ -1,0 +1,30 @@
+.header, .footer {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  background: whitesmoke;
+  
+}
+.header * {
+  margin: 0;
+  padding: 0;
+}
+.header .navSm {
+  list-style: none;
+  display: none;
+}
+.header .navLg ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  gap: .5em;
+}
+.header .navLg a {
+  padding: 12px;
+}
+.header {
+  top: 0;
+}
