@@ -23,7 +23,7 @@ export default function Habits() {
         <h2>My Habits</h2>
         <ul>
           <li>
-            <Habit/>
+            <Habit id="blah" owner="me" name="test" complete={false} accessibleBy={["me"]} lastCompleted="6/16/2022" daysUntilRepeat={19} timeOfDay="daytime"/>
           </li>
         </ul>
         <h2>Habits Shared with Me</h2>
