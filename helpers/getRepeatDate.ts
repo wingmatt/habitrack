@@ -8,7 +8,7 @@ export default function getRepeatDate(
   if (lastCompleted === null) return 'Never';
   dayjs.extend(calendar)
   let result = dayjs(lastCompleted).add(daysUntilRepeat, "day");
-  return dayjs().calendar(result, {
+  return dayjs(result).calendar(null, {
     sameDay: '[Today]', // The same day ( Today at 2:30 AM )
     nextDay: '[Tomorrow]', // The next day ( Tomorrow at 2:30 AM )
     nextWeek: 'dddd', // The next week ( Sunday at 2:30 AM )
