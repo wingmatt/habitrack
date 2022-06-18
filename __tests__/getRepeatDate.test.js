@@ -11,6 +11,8 @@ test("Habit repeating daily should say it repeats tomorrow", () => {
 })
 
 test("Habit repeating weekly should say it repeats next week", () => {
-  const nextWeek = getRepeatDate(today, 7)
-  expect(nextWeek).toBe("Next Week")
+  const nextWeekString = getRepeatDate(today, 6)
+  const validNextWeekStrings = ["Next Sunday", "Next Monday", "Next Tuesday", "Next Wednesday", "Next Thursday", "Next Friday", "Next Saturday" ]
+
+  expect(validNextWeekStrings.includes(nextWeekString)).toBe(true)
 })
