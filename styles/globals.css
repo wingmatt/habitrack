@@ -23,3 +23,11 @@ a {
   top: auto;
   overflow: hidden;
 }
+
+:root {
+  --color-dark: #012030;
+  --color-primary-1: #13678A;
+  --color-primary-2: #45C4B0;
+  --color-success: #9AEBA3;
+  --color-light: #DAFDBA;
+}
