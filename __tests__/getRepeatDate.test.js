@@ -1,5 +1,4 @@
 import getRepeatDate from "../helpers/getRepeatDate"
-import dayjs from "dayjs"
 
 // Always base tests on today's date. 
 // Supabase dates come through as ISO Strings, so that's what we'll provide for the test
