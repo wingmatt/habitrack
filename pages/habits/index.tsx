@@ -1,6 +1,6 @@
-import Layout from "../components/Layout";
-import AuthRequired from "../helpers/AuthRequired";
-import Habit from "../components/Habit"
+import Layout from "../../components/Layout";
+import AuthRequired from "../../helpers/AuthRequired";
+import Habit from "../../components/Habit"
 
 export default function Habits() {
   return (
