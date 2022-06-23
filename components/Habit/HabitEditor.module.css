@@ -1,0 +1,47 @@
+
+
+.newHabit {
+  display: flex;
+  flex-flow: column;
+  max-width: 60ch;
+  margin: auto;
+  gap: 12px;
+}
+.newHabit input, .newHabit select {
+  padding: 8px;
+}
+.newHabit select {
+  background: white;
+  border-radius: 6px;
+  border: 1px solid var(--color-dark);
+}
+.newHabit button {
+  background: var(--color-primary-1);
+  color: whitesmoke;
+  margin: 8px 0;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 var(--color-success);
+  cursor: pointer;
+}
+
+label.inline, label.block {
+ display: flex;
+}
+label.inline {
+  align-items: center;
+  gap: 8px;
+}
+
+label.block {
+  flex-flow: column;
+}
+
+input.small {
+  max-width: 8ch;
+}
+.newHabit button[type="submit"] {
+  background-color: var(--color-primary-2);
+  box-shadow: 3px 3px 0 var(--color-primary-1);
+}
