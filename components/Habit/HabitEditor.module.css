@@ -1,21 +1,23 @@
+.header {
+  text-align: center;
+}
 
-
-.newHabit {
+.editHabit {
   display: flex;
   flex-flow: column;
   max-width: 60ch;
   margin: auto;
   gap: 12px;
 }
-.newHabit input, .newHabit select {
+.editHabit input, .editHabit select {
   padding: 8px;
 }
-.newHabit select {
+.editHabit select {
   background: white;
   border-radius: 6px;
   border: 1px solid var(--color-dark);
 }
-.newHabit button {
+.editHabit button {
   background: var(--color-primary-1);
   color: whitesmoke;
   margin: 8px 0;
@@ -41,7 +43,43 @@ label.block {
 input.small {
   max-width: 8ch;
 }
-.newHabit button[type="submit"] {
+.editHabit button[type="submit"] {
   background-color: var(--color-primary-2);
   box-shadow: 3px 3px 0 var(--color-primary-1);
+}
+
+.accessList {
+  background: white;
+  border: 1px solid var(--color-dark);
+
+}
+.accessListOptions button {
+  background: #f0f0f0;
+  box-shadow: inset 3px 3px 6px rgba(0,0,0,.25);
+  color: black;
+  border-radius: 0;
+  width: 50%;
+  margin-bottom: 0;
+}
+.accessListOptions button.active {
+  background: white;
+  box-shadow: none;
+}
+.accessList  ul {
+  margin: 8px;
+  padding: 0;
+}
+.accessList li {
+  list-style: none;
+}
+.accessList li .removeAccess {
+  border-radius: 100%;
+  background: var(--color-dark);
+  box-shadow: none;
+  font-size: 10px;
+padding: 3px 6px;
+margin-left: .25em;
+}
+.accessList li:hover .removeAccess {
+  background: tomato;
 }
