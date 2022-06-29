@@ -12,8 +12,8 @@ export interface HabitInterface {
   name: string;
   description?: string;
   complete: boolean;
-  lastCompleted: Date | null;
+  lastCompleted: string | null;
   daysUntilRepeat: number;
-  repeatDate?: Date | null;
+  repeatDate?: string | null;
   timeOfDay: "morning" | "daytime" | "evening";
 }
