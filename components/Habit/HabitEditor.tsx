@@ -1,5 +1,6 @@
 import { HabitInterface } from "../../types";
 import styles from "./HabitEditor.module.css";
+import { useState } from "react";
 
 const addAccessibleBy = () => {
   return "okay";
@@ -9,19 +10,45 @@ const removeAccessibleBy = (email: string) => {
 };
 
 export default function HabitEditor(props: HabitInterface) {
+  const [form, setForm] = useState({ data: { ...props } });
+  const handleChange = (event: {
+    target: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+  }) => {
+    setForm((prevState) => ({
+      data: {
+        ...prevState.data,
+        [event.target.name]: event.target.value,
+      },
+    }));
+  };
+
   return (
     <>
       <h1 className={styles.header}>New Habit</h1>
       <form className={styles.editHabit}>
         <label className={styles.block}>
-          Name <input name="name" />
+          Name{" "}
+          <input
+            name="name"
+            value={form.data.name}
+            onChange={(event) => handleChange(event)}
+          />
         </label>
         <label className={styles.block}>
-          Description <textarea name="description" />
+          Description{" "}
+          <textarea
+            name="description"
+            value={form.data.description}
+            onChange={(event) => handleChange(event)}
+          />
         </label>
         <label className={styles.inline}>
           Time of Day
-          <select name="timeOfDay">
+          <select
+            name="timeOfDay"
+            value={form.data.timeOfDay}
+            onChange={(event) => handleChange(event)}
+          >
             <option value="morning">Morning</option>
             <option value="daytime">Daytime</option>
             <option value="evening">Evening</option>
@@ -36,17 +63,19 @@ export default function HabitEditor(props: HabitInterface) {
         <section className={styles.accessList}>
           <ul role="list">
             <li>
-              <label>Matt Wing
-              <button
-                type="button"
-                onClick={() => {
-                  removeAccessibleBy("matt@wingmatt.dev");
-                }}
-                title="Remove Matt Wing from this habit"
-                className={styles.removeAccess}
-              >
-                X
-              </button></label>
+              <label>
+                Matt Wing
+                <button
+                  type="button"
+                  onClick={() => {
+                    removeAccessibleBy("matt@wingmatt.dev");
+                  }}
+                  title="Remove Matt Wing from this habit"
+                  className={styles.removeAccess}
+                >
+                  X
+                </button>
+              </label>
             </li>
           </ul>
           <div className={styles.accessListOptions}>
@@ -55,7 +84,13 @@ export default function HabitEditor(props: HabitInterface) {
           </div>
         </section>
         <label className={styles.inline}>
-          Start this habit on <input type="date" name="repeatDate" />
+          Start this habit on{" "}
+          <input
+            type="date"
+            name="repeatDate"
+            value={form.data.description}
+            onChange={(event) => handleChange(event)}
+          />
         </label>
         <label className={styles.inline}>
           <input type="checkbox" name="doesRepeat" />
@@ -67,6 +102,8 @@ export default function HabitEditor(props: HabitInterface) {
             type="number"
             name="daysUntilRepeat"
             className={styles.small}
+            value={form.data.daysUntilRepeat}
+            onChange={(event) => handleChange(event)}
           />{" "}
           days
         </label>
