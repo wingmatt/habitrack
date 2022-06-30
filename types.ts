@@ -4,6 +4,19 @@ export interface TaskInterface {
   accessibleBy?: string[];
 }
 
+export interface Props {
+  children: React.ReactNode;
+}
+export interface ReducerAction {
+  type: "SET_USER_DATA" | "ADD_HABIT" | "SET_HABITS";
+  payload: ReducerState | HabitInterface[] | HabitInterface;
+}
+export interface ReducerState {
+  T: any
+  user: any,
+  habits: HabitInterface[]
+}
+
 export interface HabitInterface {
   id: string;
   created_at?: string;
