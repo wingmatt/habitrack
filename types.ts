@@ -9,14 +9,22 @@ export interface Props {
 }
 export interface ReducerAction {
   type: "SET_USER_DATA" | "ADD_HABIT" | "SET_HABITS";
-  payload: ReducerState | HabitInterface[] | HabitInterface;
+  payload: ReducerState | HabitInterface[] | HabitInterface | UserData;
 }
 export interface ReducerState {
-  T: any
-  user: any,
-  habits: HabitInterface[]
+  T: any;
+  user: any;
+  habits: HabitInterface[];
 }
 
+export interface UserData {
+  id: string;
+  email?: string;
+  username: string;
+  timezone: string;
+  streak: number;
+  gems: number;
+}
 export interface HabitInterface {
   id: string;
   created_at?: string;
