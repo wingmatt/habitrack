@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineLoading } from "react-icons/ai";
 import { supabase } from "../utils/supabaseClient";
+import { UserProvider } from "./UserProvider";
 
 export default function AuthRequired({ children }) {
   const [session, setSession] = useState(undefined);
@@ -13,10 +14,10 @@ export default function AuthRequired({ children }) {
     });
   }, []);
   useEffect(() => {
-    if (session === null) router.push("/profile");
+    if ((session === null) || (session?.user && session.user.email === undefined)) router.push("/profile");
   }, [session]);
-  if (session) {
-    return <>{children}</>;
+  if (session && session.user.email) {
+    return <UserProvider>{children}</UserProvider>;
   } else {
     return <AiOutlineLoading />;
   }
