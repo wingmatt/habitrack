@@ -1,6 +1,7 @@
 import * as React from "react";
 import { supabase } from "../utils/supabaseClient";
-import { ReducerState, ReducerAction, Props } from "../types";
+import { ReducerState, ReducerAction, Props, UserData } from "../types";
+import getProfile from "./get-profile";
 
 const UserContext = React.createContext({});
 
@@ -40,9 +41,18 @@ function UserProvider({ children }: Props) {
     const currentAuthenticatedUser = await supabase.auth.session();
     
     if ( currentAuthenticatedUser?.user?.id) {
-      const userId = currentAuthenticatedUser.user.id;
-      dispatch({ type: "SET_USER_DATA", payload: userId });
-    } else dispatch({ type: "SET_USER_DATA", payload: null });
+      const user = currentAuthenticatedUser.user;
+      const {username, timezone, streak, gems} = await getProfile();
+      const userData: UserData = {
+        id: user.id,
+        email: user.email,
+        username: username,
+        timezone: timezone,
+        streak: streak,
+        gems: gems
+      }
+      dispatch({ type: "SET_USER_DATA", payload: userData });
+    }
   };
   const value = { state, dispatch };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
