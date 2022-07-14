@@ -14,7 +14,7 @@ export default function AuthRequired({ children }) {
     });
   }, []);
   useEffect(() => {
-    if ((session === null) || (session?.user && session.user.email === undefined)) router.push("/profile");
+    if ((session === null) || (session?.user && session.user.email === undefined)) router.push("/login");
   }, [session]);
   if (session && session.user.email) {
     return <UserProvider>{children}</UserProvider>;
