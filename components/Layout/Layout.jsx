@@ -1,5 +1,6 @@
 import Header from './Header'
 import styles from './Layout.module.css'
+import Link from "next/link";
 
 export default function Layout ({children}) {
 
@@ -12,9 +13,9 @@ export default function Layout ({children}) {
       <footer className={styles.footer}>
         <ul role="list">
           <li>
-            <a href="/habits/new">New Habit</a>
+            <Link href="/habits/new"><a>New Habit</a></Link>
           </li><li>
-            <a href="/habits/">All Habits</a>
+            <Link href="/habits/"><a>All Habits</a></Link>
           </li>
         </ul>
       </footer>
