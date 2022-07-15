@@ -1,26 +1,21 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineLoading } from "react-icons/ai";
-import { supabase } from "../utils/supabaseClient";
-import { UserProvider } from "./UserProvider";
-import { Session } from "@supabase/supabase-js";
+import { useUserData } from "./UserProvider";
 import { Props } from "../types";
 
 export default function AuthRequired({ children }: Props) {
-  const [session, setSession] = useState<Session | null | undefined>(undefined);
+  const {state} = useUserData();
   const router = useRouter();
+  const userSession = state?.user;
   useEffect(() => {
-    setSession(supabase.auth.session());
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
-  useEffect(() => {
-    if (session === null || (session?.user && session.user.email === undefined))
+    const userSession = state?.user;
+    console.log(userSession)
+    if (userSession === null || (userSession?.user && userSession.email === undefined))
       router.push("/login");
-  }, [session]);
-  if (session && session?.user?.email) {
-    return <UserProvider>{children}</UserProvider>;
+  }, []);
+  if (userSession && userSession?.email) {
+    return <>{children}</>;
   } else {
     return <AiOutlineLoading />;
   }
