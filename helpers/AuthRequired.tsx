@@ -10,7 +10,6 @@ export default function AuthRequired({ children }: Props) {
   const userSession = state?.user;
   useEffect(() => {
     const userSession = state?.user;
-    console.log(userSession)
     if (userSession === null || (userSession?.user && userSession.email === undefined))
       router.push("/login");
   }, []);
