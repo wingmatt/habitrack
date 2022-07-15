@@ -4,7 +4,7 @@ import { ReducerState, ReducerAction, Props, UserData } from "../types";
 import getProfile from "./get-profile";
 
 const UserContext = React.createContext<
-{state: ReducerState; dispatch: (action: ReducerAction) => void} | undefined
+  { state: ReducerState; dispatch: (action: ReducerAction) => void } | undefined
 >(undefined);
 
 function userDataReducer(state: ReducerState, action: ReducerAction): any {
@@ -41,18 +41,18 @@ function UserProvider({ children }: Props) {
   }, []);
   const getUserData = async () => {
     const currentAuthenticatedUser = await supabase.auth.session();
-    
-    if ( currentAuthenticatedUser?.user?.id) {
+
+    if (currentAuthenticatedUser?.user?.id) {
       const user = currentAuthenticatedUser.user;
-      const {username, timezone, streak, gems} = await getProfile();
+      const { username, timezone, streak, gems } = await getProfile();
       const userData: UserData = {
         id: user.id,
         email: user.email,
         username: username,
         timezone: timezone,
         streak: streak,
-        gems: gems
-      }
+        gems: gems,
+      };
       dispatch({ type: "SET_USER_DATA", payload: userData });
     }
   };
