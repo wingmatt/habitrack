@@ -3,7 +3,9 @@ import { supabase } from "../utils/supabaseClient";
 import { ReducerState, ReducerAction, Props, UserData } from "../types";
 import getProfile from "./get-profile";
 
-const UserContext = React.createContext({});
+const UserContext = React.createContext<
+{state: ReducerState; dispatch: (action: ReducerAction) => void} | undefined
+>(undefined);
 
 function userDataReducer(state: ReducerState, action: ReducerAction): any {
   switch (action.type) {
