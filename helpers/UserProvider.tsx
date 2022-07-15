@@ -58,12 +58,12 @@ function UserProvider({ children }: Props) {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 
-function usePantry() {
+function useUserData() {
   const context = React.useContext(UserContext);
   if (context === undefined) {
-    throw new Error("usePantry must be used within a UserProvider");
+    throw new Error("useUserData must be used within a UserProvider");
   }
   return context;
 }
 
-export { UserProvider, usePantry };
+export { UserProvider, useUserData };
