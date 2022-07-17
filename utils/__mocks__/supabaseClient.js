@@ -71,7 +71,7 @@ const mockSessionData = {
 const supabase = {
   auth: {
     session() {
-      return jest.fn(() => mockSessionData);
+      return mockSessionData;
     },
     user() {
       return mockUserData;
