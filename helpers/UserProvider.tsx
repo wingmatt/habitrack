@@ -45,7 +45,7 @@ function UserProvider({ children }: Props) {
     if (currentAuthenticatedUser?.user?.id) {
       const user = currentAuthenticatedUser.user;
       const { username, timezone, streak, gems } = await getProfile();
-      const userData: UserData = {
+      userData = {
         id: user.id,
         email: user.email,
         username: username,
