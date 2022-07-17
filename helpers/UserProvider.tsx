@@ -26,6 +26,7 @@ function userDataReducer(state: ReducerState, action: ReducerAction): any {
         habits: [action.payload],
       };
     default: {
+      //@ts-ignore-next: TS thinks this will never occur, but we'll keep it in just in case
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
