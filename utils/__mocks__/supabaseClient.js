@@ -68,11 +68,13 @@ const mockSessionData = {
   },
 };
 
-const mockProfile = {
-  username: "testUsername",
-  timezone: "UTC",
-  streak: 0,
-  gems: 7
+const mockProfile = { 
+  data: {
+    username: "testUsername",
+    timezone: "UTC",
+    streak: 0,
+    gems: 7
+  }
 }
 
 const supabase = {
