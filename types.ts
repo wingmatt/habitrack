@@ -9,7 +9,7 @@ export interface Props {
 }
 export interface ReducerAction {
   type: "SET_USER_DATA" | "ADD_HABIT" | "SET_HABITS";
-  payload: ReducerState | HabitInterface[] | HabitInterface | UserData;
+  payload: ReducerState | HabitInterface[] | HabitInterface | UserData | null;
 }
 export interface ReducerState {
   T: any;
