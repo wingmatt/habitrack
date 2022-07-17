@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { AiOutlineLoading } from "react-icons/ai";
+import Loading from "../components/Layout/Loading"
 import { useUserData } from "./UserProvider";
 import { Props } from "../types";
 
@@ -19,6 +19,6 @@ export default function AuthRequired({ children }: Props) {
   if (userSession && userSession?.email) {
     return <>{children}</>;
   } else {
-    return <AiOutlineLoading aria-label="Loading" />;
+    return <Loading />;
   }
 }

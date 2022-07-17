@@ -1,0 +1,19 @@
+.spinner {
+  width: 100px;
+  height: 100px;
+  margin: 15vh auto;
+  text-align: center;
+  display: block;
+  color: var(--color-primary-2);
+  animation: loadingRotate 1s ease infinite;
+  rotate: 135deg;
+}
+
+@keyframes loadingRotate {
+  0% {
+    transform: translate(0px, 0px) rotate(0turn);
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(1turn);
+  }
+}
