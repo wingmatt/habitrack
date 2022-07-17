@@ -33,7 +33,7 @@ function userDataReducer(state: ReducerState, action: ReducerAction): any {
 function UserProvider({ children }: Props) {
   const [state, dispatch] = React.useReducer(userDataReducer, {
     loading: true,
-    user: null,
+    user: undefined,
     habits: [],
   });
   React.useEffect(() => {
@@ -41,7 +41,7 @@ function UserProvider({ children }: Props) {
   }, []);
   const getUserData = async () => {
     const currentAuthenticatedUser = await supabase.auth.session();
-
+    let userData: UserData | null = null;
     if (currentAuthenticatedUser?.user?.id) {
       const user = currentAuthenticatedUser.user;
       const { username, timezone, streak, gems } = await getProfile();
@@ -53,8 +53,8 @@ function UserProvider({ children }: Props) {
         streak: streak,
         gems: gems,
       };
-      dispatch({ type: "SET_USER_DATA", payload: userData });
     }
+    dispatch({ type: "SET_USER_DATA", payload: userData });
   };
   const value = { state, dispatch };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
