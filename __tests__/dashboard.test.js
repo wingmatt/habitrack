@@ -10,11 +10,12 @@ test('3 Accordions appear in dashboard when authenticated', async () => {
   //arrange
   render(<UserProvider><Dashboard /></UserProvider>)
   await waitForElementToBeRemoved(() => screen.getByLabelText('Loading'));
+
   //act
-  const accordions = screen.getAllByRole("group");
-  console.log(accordions[0].innerHTML)
+  const accordions = screen.getAllByRole("button");
+
   //assert
-  expect(accordions.length).toBe(4);
+  expect(accordions.length).toBe(3);
 })
 
 /*test('no Accordions appear in dashboard when unauthenticated', () => {
@@ -23,7 +24,7 @@ test('3 Accordions appear in dashboard when authenticated', async () => {
   render(<Dashboard />)
 
   //act
-  const accordions = screen.queryAllByRole("group");
+  const accordions = screen.queryAllByRole("button");
 
   //assert
   expect.accordions.toBeFalsy;

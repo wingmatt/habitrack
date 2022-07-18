@@ -27,7 +27,7 @@ const Accordion = ( props: {
   const [isOpen, setIsOpen] = useState (false);
   return (
     <details {... isOpen ? "open" : ""} className={styles.details}>
-      <summary onClick={() => setIsOpen(isOpen => !isOpen)} className={styles.summary}>
+      <summary onClick={() => setIsOpen(isOpen => !isOpen)} className={styles.summary} role="button">
         <div className={styles.titleContainer}>
           {getTitleIcon(props.title)}
           <h2>{props.title}</h2>
