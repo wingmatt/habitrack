@@ -1,6 +1,8 @@
 import { render, screen, waitForElementToBeRemoved } from "@testing-library/react"
 import supabase from "../utils/supabaseClient"
 jest.mock('../utils/supabaseClient')
+import {getProfile, getHabits} from "../helpers/getUserData"
+jest.mock("../helpers/getUserData")
 
 import { UserProvider } from "../helpers/UserProvider"
 
