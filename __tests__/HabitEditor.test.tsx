@@ -1,31 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import HabitEditor from "../components/Habit/HabitEditor";
-import { useUserData } from "../helpers/UserProvider";
-
-const mockState = {
-  user: {},
-  habits: [
-    {id: "testId",
-    owner: "testOwner",
-    accessibleBy: [],
-    name: "Old Name",
-    description: "Old description",
-    complete: false,
-    lastCompleted: null,
-    daysUntilRepeat: 0,
-    repeatDate: null,
-    timeOfDay: "daytime"}
-  ]
-}
+import { UserProvider  } from "../helpers/UserProvider";
+import supabase from "../utils/supabaseClient"
+jest.mock('../utils/supabaseClient')
+import {getProfile, getHabits} from "../helpers/getUserData"
+jest.mock("../helpers/getUserData")
 
 test("New Habit: Submitting a new habit should add that habit to the context", () => {
   //arrange
-  const user = userEvent.setup();
-    // TODO: Mock this with mockState
-  const state = mockState;
+  const userAction = userEvent.setup();
   render(
-    <HabitEditor
+    <UserProvider><HabitEditor
       id=""
       owner="testOwner"
       accessibleBy={[]}
@@ -36,15 +22,15 @@ test("New Habit: Submitting a new habit should add that habit to the context", (
       daysUntilRepeat={0}
       repeatDate={null}
       timeOfDay="daytime"
-    />
+    /></UserProvider>
   );
 
   const nameField = screen.getByLabelText('Name', {selector: 'input'})
   const saveButton = screen.getByRole('button', {name: 'Save'});
 
   //act
-  user.type(nameField, 'Take out the trash');
-  user.click(saveButton);
+  userAction.type(nameField, 'Take out the trash');
+  userAction.click(saveButton);
 
   //assert
   const newHabitInState = state.habits.find(habit => habit.name == "Take out the trash")
@@ -56,7 +42,6 @@ test("New Habit: Submitting a new habit should add that habit to the context", (
 test("Edit Habit: Submitting a habit with the ID of an existing habit should update the context", () => {
   //arrange
   const user = userEvent.setup();
-  const state = mockState;
   render(
     <HabitEditor
       id="testId"
