@@ -1,7 +1,12 @@
 import { supabase } from "../utils/supabaseClient";
 import { HabitInterface } from "../types";
 
-export default async function getProfile() {
+export default async function getProfile(): Promise<{
+  username: string;
+  timezone: string;
+  streak: number;
+  gems: number;
+}> {
   try {
     let { data, error, status } = await supabase
       .from("profiles")
@@ -14,9 +19,10 @@ export default async function getProfile() {
 
     if (data) {
       return data;
-    }
+    } else throw error;
   } catch (error: any) {
     console.error(error.message);
+    throw error;
   }
 }
 const getHabits = async (): Promise<HabitInterface[]> => {
@@ -26,6 +32,7 @@ const getHabits = async (): Promise<HabitInterface[]> => {
       .select(
         "id, accessibleBy, name, description, complete, lastCompleted, daysUntilRepeat, timeOfDay"
       );
+      
     if (data) {
       return data;
     } else throw Error;
