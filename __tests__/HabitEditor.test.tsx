@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import HabitEditor from "../components/Habit/HabitEditor";
 import { UserProvider  } from "../helpers/UserProvider";
+//@ts-ignore-next: Need to mock supabase so I gotta import it
 import supabase from "../utils/supabaseClient"
 jest.mock('../utils/supabaseClient')
 import {getProfile, getHabits} from "../helpers/getUserData"
