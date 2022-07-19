@@ -24,9 +24,8 @@ const getHabits = async (): Promise<HabitInterface[]> => {
     let { data } = await supabase
       .from("habits")
       .select(
-        "id, owner, accessibleBy, name, description, complete, lastCompleted, daysUntilRepeat, repeatDate, timeOfDay"
+        "id, accessibleBy, name, description, complete, lastCompleted, daysUntilRepeat, timeOfDay"
       );
-    
     if (data) {
       return data;
     } else throw Error;
