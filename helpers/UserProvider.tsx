@@ -1,7 +1,7 @@
 import * as React from "react";
 import { supabase } from "../utils/supabaseClient";
-import { ReducerState, ReducerAction, Props, UserData } from "../types";
-import getProfile from "./get-profile";
+import { ReducerState, ReducerAction, Props, UserData, HabitInterface } from "../types";
+import {getProfile, getHabits} from "./getUserData";
 
 const UserContext = React.createContext<
   { state: ReducerState; dispatch: (action: ReducerAction) => void } | undefined
@@ -38,9 +38,10 @@ function UserProvider({ children }: Props) {
     habits: [],
   });
   React.useEffect(() => {
-    getUserData();
+    setUserData();
+    setHabits();
   }, []);
-  const getUserData = async () => {
+  const setUserData = async () => {
     const currentAuthenticatedUser = await supabase.auth.session();
     let userData: UserData | null = null;
     if (currentAuthenticatedUser?.user?.id) {
@@ -57,6 +58,10 @@ function UserProvider({ children }: Props) {
     }
     dispatch({ type: "SET_USER_DATA", payload: userData });
   };
+  const setHabits = async () => {
+    const habits: HabitInterface[] = await getHabits();
+    dispatch({ type: "SET_HABITS", payload: habits });
+  }
   const value = { state, dispatch };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
