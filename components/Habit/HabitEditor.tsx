@@ -1,6 +1,7 @@
 import { HabitInterface } from "../../types";
 import styles from "./HabitEditor.module.css";
 import { useState } from "react";
+import { createHabit, updateHabit } from "../../helpers/updateUserData";
 
 const addAccessibleBy = () => {
   return "okay";
@@ -8,6 +9,14 @@ const addAccessibleBy = () => {
 const removeAccessibleBy = (email: string) => {
   return "okay";
 };
+
+const processSubmit = (props: HabitInterface): void => {
+  // Is the habit ID blank? If so, create a new habit in the context, then in the DB
+  if (props.id = '') createHabit(props)
+  // If not, update the matching habit with updated info in the context, then in the DB
+  else updateHabit(props);
+  // dispatch an update to the habits here
+}
 
 export default function HabitEditor(props: HabitInterface) {
   const [form, setForm] = useState({ data: { ...props } });
@@ -107,7 +116,7 @@ export default function HabitEditor(props: HabitInterface) {
           />{" "}
           days
         </label>
-        <button type="submit">Save</button>
+        <button type="submit" onClick={() => processSubmit(props)}>Save</button>
       </form>
     </>
   );
