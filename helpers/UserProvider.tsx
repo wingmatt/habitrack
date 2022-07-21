@@ -7,6 +7,7 @@ const UserContext = React.createContext<
   { state: ReducerState; dispatch: (action: ReducerAction) => void } | undefined
 >(undefined);
 
+//TODO: Make TS errors appear here when the action payload is the incorrect type
 function userDataReducer(state: ReducerState, action: ReducerAction): any {
   switch (action.type) {
     case "SET_USER_DATA":
@@ -23,7 +24,7 @@ function userDataReducer(state: ReducerState, action: ReducerAction): any {
     case "SET_HABITS":
       return {
         ...state,
-        habits: [action.payload],
+        habits: action.payload,
       };
     default: {
       //@ts-ignore-next: TS thinks this will never occur, but we'll keep it in just in case
