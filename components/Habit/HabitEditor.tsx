@@ -10,9 +10,11 @@ const removeAccessibleBy = (email: string) => {
   return "okay";
 };
 
-const processSubmit = (props: HabitInterface): void => {
+const processSubmit = (event: any, props: HabitInterface): void => {
+  event.preventDefault()
+  console.log(props)
   // Is the habit ID blank? If so, create a new habit in the context, then in the DB
-  if (props.id = '') createHabit(props)
+  if (props.id === '') createHabit(props)
   // If not, update the matching habit with updated info in the context, then in the DB
   else updateHabit(props);
   // dispatch an update to the habits here
@@ -116,7 +118,7 @@ export default function HabitEditor(props: HabitInterface) {
           />{" "}
           days
         </label>
-        <button type="submit" onClick={() => processSubmit(props)}>Save</button>
+        <button type="submit" onClick={(event) => processSubmit(event, props)}>Save</button>
       </form>
     </>
   );
