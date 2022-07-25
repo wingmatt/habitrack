@@ -1,24 +1,29 @@
 import { supabase } from "../utils/supabaseClient";
 import { HabitInterface } from "../types";
-const createHabit = async (habit: HabitInterface): Promise<HabitInterface> => {
+
+const createHabit = async (habit: HabitInterface) => {
+  // remove id data from the habit object
+  //@ts-ignore-next
   try {
-    let { data: HabitInterface, error: any } = await supabase
+    let {data, error} = await supabase
       .from("habits")
       .insert(habit);
+
+    if (data) return data[0];
     if (error) {
       throw error;
     }
-    return data;
+    
   } catch (error: any) {
     console.error(error.message);
   }
 };
-const updateHabit = async (habit: HabitInterface): Promise<void> => {
+const updateHabit = async (habit: HabitInterface) => {
   try {
     let { error: Error } = await supabase
       .from("habits")
       .update(habit)
-      .match({ user_id: habit.id });
+      .match({ id: habit.id });
     if (Error) {
       throw Error;
     }
