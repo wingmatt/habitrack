@@ -10,21 +10,19 @@ export default function Habits() {
     <Layout>
       <AuthRequired>
         <h2>My Habits</h2>
-        <ul>
-            {state.habits.map((habit) => (
-              <li>
-                <Habit
-                  id={habit.id}
-                  owner={habit.owner}
-                  name={habit.name}
-                  complete={habit.complete}
-                  accessibleBy={habit.accessibleBy}
-                  lastCompleted={habit.lastCompleted}
-                  daysUntilRepeat={habit.daysUntilRepeat}
-                  timeOfDay={habit.timeOfDay}
-                />
-              </li>
-            ))}
+        <ul role="list">
+          {state.habits.map((habit) => (
+              <Habit
+                id={habit.id}
+                owner={habit.owner}
+                name={habit.name}
+                complete={habit.complete}
+                accessibleBy={habit.accessibleBy}
+                lastCompleted={habit.lastCompleted}
+                daysUntilRepeat={habit.daysUntilRepeat}
+                timeOfDay={habit.timeOfDay}
+              />
+          ))}
         </ul>
         <h2>Habits Shared with Me</h2>
       </AuthRequired>
