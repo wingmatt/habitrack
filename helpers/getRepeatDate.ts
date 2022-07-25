@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import calendar from "dayjs/plugin/calendar";
 
 export default function getRepeatDate(
-  lastCompleted: Date | null,
+  lastCompleted: string | null,
   daysUntilRepeat: number
 ): string {
   if (lastCompleted === null) return 'Never';
