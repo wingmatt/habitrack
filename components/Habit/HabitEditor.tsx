@@ -2,6 +2,7 @@ import { HabitInterface } from "../../types";
 import styles from "./HabitEditor.module.css";
 import { useState } from "react";
 import { createHabit, updateHabit } from "../../helpers/updateUserData";
+import { useUserData } from "../../helpers/UserProvider";
 
 const addAccessibleBy = () => {
   return "okay";
@@ -11,21 +12,25 @@ const removeAccessibleBy = (email: string) => {
 };
 
 //TODO: Use more specific types
-const processSubmit = (event: any, form: any): void => {
+const processSubmit = async (event: any, form: any, dispatch: any): Promise<void> => {
   event.preventDefault();
   const formData = form.data;
+  let response;
   // Is the habit ID blank? If so, create a new habit in the context, then in the DB
   if (formData.id == '') {
     delete formData.id;
-    createHabit(formData)
+    response = await createHabit(formData);
   } 
   // If not, update the matching habit with updated info in the context, then in the DB
-  else updateHabit(formData);
+  else response = await updateHabit(formData);
+  console.log(response)
   // dispatch an update to the habits here
+  dispatch({type:'UPDATE_HABIT', payload: response})
 }
 
 export default function HabitEditor(props: HabitInterface) {
   const [form, setForm] = useState({ data: { ...props } });
+  const {dispatch} = useUserData();
   const handleChange = (event: {
     target: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
   }) => {
@@ -122,7 +127,7 @@ export default function HabitEditor(props: HabitInterface) {
           />{" "}
           days
         </label>
-        <button type="submit" onClick={(event) => processSubmit(event, form)}>Save</button>
+        <button type="submit" onClick={(event) => processSubmit(event, form, dispatch)}>Save</button>
       </form>
     </>
   );
