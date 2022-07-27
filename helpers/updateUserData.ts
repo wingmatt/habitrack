@@ -20,13 +20,14 @@ const createHabit = async (habit: HabitInterface) => {
 };
 const updateHabit = async (habit: HabitInterface) => {
   try {
-    let { error: Error } = await supabase
+    let { data, error: Error } = await supabase
       .from("habits")
       .update(habit)
       .match({ id: habit.id });
     if (Error) {
       throw Error;
     }
+    return data[0]
   } catch (Error: any) {
     console.error(Error.message);
   }
