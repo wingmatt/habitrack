@@ -7,7 +7,6 @@ import { useUserData } from "../../../helpers/UserProvider";
 export default function newHabit() {
   const router = useRouter();
   const { state } = useUserData();
-  const { user } = state;
   const {
     id,
     owner,
@@ -19,7 +18,6 @@ export default function newHabit() {
     daysUntilRepeat,
     timeOfDay,
   } = state.habits.find((habit) => habit.id == router.query.id);
-  const userId = user?.id;
   return (
     <Layout>
       <AuthRequired>
