@@ -23,6 +23,10 @@ function userDataReducer(state: ReducerState, action: ReducerAction): any {
         ...state,
         habits: [...state.habits, action.payload],
       };
+    case "DELETE_HABIT":
+      let deletedHabitIndex = state.habits.findIndex(habit => habit.id == action.payload);
+      state.habits.splice(deletedHabitIndex, 1);
+      return state;
     case "SET_HABITS":
       return {
         ...state,

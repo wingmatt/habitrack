@@ -19,12 +19,17 @@ interface UPDATE_HABIT {
   payload: HabitInterface
 }
 
+interface DELETE_HABIT {
+  type: "DELETE_HABIT";
+  payload: string
+}
+
 interface SET_HABITS {
   type: "SET_HABITS";
   payload: HabitInterface[]
 }
 
-export type ReducerAction = SET_USER_DATA | UPDATE_HABIT | SET_HABITS;
+export type ReducerAction = SET_USER_DATA | UPDATE_HABIT | DELETE_HABIT | SET_HABITS;
 
 export interface ReducerState {
   T: any;

@@ -1,7 +1,7 @@
 import { HabitInterface } from "../../types";
 import styles from "./HabitEditor.module.css";
 import { useState } from "react";
-import { createHabit, updateHabit } from "../../helpers/updateUserData";
+import { createHabit, updateHabit, deleteHabit } from "../../helpers/updateUserData";
 import { useUserData } from "../../helpers/UserProvider";
 
 const addAccessibleBy = () => {
@@ -12,7 +12,7 @@ const removeAccessibleBy = (email: string) => {
 };
 
 //TODO: Use more specific types
-const processSubmit = async (event: any, form: any, dispatch: any): Promise<void> => {
+const submitSave = async (event: any, form: any, dispatch: any): Promise<void> => {
   event.preventDefault();
   const formData = form.data;
   let response;
@@ -23,9 +23,15 @@ const processSubmit = async (event: any, form: any, dispatch: any): Promise<void
   } 
   // If not, update the matching habit with updated info in the context, then in the DB
   else response = await updateHabit(formData);
-  console.log(response)
   // dispatch an update to the habits here
   dispatch({type:'UPDATE_HABIT', payload: response})
+}
+
+const submitDelete = async (event: any, form: any, dispatch: any): Promise<void> => {
+  event.preventDefault();
+  const habitId = form.data.id;
+  const response = await deleteHabit(habitId);
+  dispatch({type:'DELETE_HABIT', payload: response})
 }
 
 export default function HabitEditor(props: HabitInterface) {
@@ -127,7 +133,8 @@ export default function HabitEditor(props: HabitInterface) {
           />{" "}
           days
         </label>
-        <button type="submit" onClick={(event) => processSubmit(event, form, dispatch)}>Save</button>
+        <button type="submit" name="Save Habit" onClick={(event) => submitSave(event, form, dispatch)}>Save</button>
+        <button type="submit" name="Delete Habit" onClick={(event) => submitDelete(event, form, dispatch)}>Delete</button>
       </form>
     </>
   );

@@ -33,4 +33,13 @@ const updateHabit = async (habit: HabitInterface) => {
   }
 };
 
-export { createHabit, updateHabit };
+const deleteHabit = async (habitId: string) => {
+  try {
+    let {data, error: Error } = await supabase.from("habits").delete().match({id: habitId});
+    return data[0].id
+  } catch (Error: any) {
+    console.error(Error.message);
+  }
+}
+
+export { createHabit, updateHabit, deleteHabit };
