@@ -16,7 +16,9 @@ function userDataReducer(state: ReducerState, action: ReducerAction): any {
         user: action.payload,
         loading: false,
       };
-    case "ADD_HABIT":
+    case "UPDATE_HABIT":
+      let updatedHabitIndex = state.habits.findIndex(habit => habit.id == action.payload.id);
+      if (updatedHabitIndex) state.habits.splice(updatedHabitIndex, 1);
       return {
         ...state,
         habits: [...state.habits, action.payload],

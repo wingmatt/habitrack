@@ -14,8 +14,8 @@ interface SET_USER_DATA {
   payload: UserData | null;
 }
 
-interface ADD_HABIT {
-  type: "ADD_HABIT";
+interface UPDATE_HABIT {
+  type: "UPDATE_HABIT";
   payload: HabitInterface
 }
 
@@ -24,7 +24,7 @@ interface SET_HABITS {
   payload: HabitInterface[]
 }
 
-export type ReducerAction = SET_USER_DATA | ADD_HABIT | SET_HABITS;
+export type ReducerAction = SET_USER_DATA | UPDATE_HABIT | SET_HABITS;
 
 export interface ReducerState {
   T: any;
