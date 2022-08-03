@@ -1,5 +1,5 @@
 import { TaskInterface } from '../../types'
-import styles from './Task.module.css'
+import styles from './Checkbox.module.css'
 import { useState } from 'react'
 import { FiCheckSquare, FiSquare } from 'react-icons/fi'
 
