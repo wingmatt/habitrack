@@ -2,7 +2,11 @@ import Layout from "../../components/Layout";
 import AuthRequired from "../../helpers/AuthRequired";
 import Habit from "../../components/Habit";
 import { useUserData } from "../../helpers/UserProvider";
-import { useEffect } from "react";
+import TimeOfDayIcon from "../../helpers/TimeOfDayIcon";
+import getRepeatDate from "../../helpers/getRepeatDate";
+import Link from "next/link";
+import { FaEdit } from "react-icons/fa";
+import styles from "../../components/Habit/Habit.module.css"
 
 export default function Habits() {
   const { state } = useUserData();
@@ -12,16 +16,16 @@ export default function Habits() {
         <h2>My Habits</h2>
         <ul role="list">
           {state.habits.map((habit) => (
-              <Habit
-                id={habit.id}
-                owner={habit.owner}
-                name={habit.name}
-                complete={habit.complete}
-                accessibleBy={habit.accessibleBy}
-                lastCompleted={habit.lastCompleted}
-                daysUntilRepeat={habit.daysUntilRepeat}
-                timeOfDay={habit.timeOfDay}
-              />
+              <li className={styles.habit}>
+              <TimeOfDayIcon timeOfDay={habit.timeOfDay} />
+              <span>{habit.name}</span>
+              <span>Repeats: {getRepeatDate(habit.lastCompleted, habit.daysUntilRepeat)}</span>
+              <Link href={"/habits/edit/" + habit.id}>
+                <a>
+                  <FaEdit />
+                </a>
+              </Link>
+            </li>
           ))}
         </ul>
         <h2>Habits Shared with Me</h2>
