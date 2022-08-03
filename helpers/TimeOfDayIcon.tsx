@@ -9,6 +9,8 @@ export default function TimeOfDayIcon ({timeOfDay}) {
       return <WiDaySunny/>
     case 'evening':
       return <BsMoonStars/>
+    default:
+      return <WiDaySunny/>
   }
   
 }
