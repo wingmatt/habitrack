@@ -7,6 +7,7 @@
     "test": "jest __tests__/"
   },
   "dependencies": {
+    "@reach/alert": "^0.17.0",
     "@supabase/supabase-js": "^1.35.3",
     "dayjs": "^1.11.3",
     "next": "latest",
