@@ -16,7 +16,7 @@ export default function Habits() {
         <h2>My Habits</h2>
         <ul role="list">
           {state.habits.map((habit) => (
-              <li className={styles.habit}>
+            <li className={styles.habit}>
               <TimeOfDayIcon timeOfDay={habit.timeOfDay} />
               <span>{habit.name}</span>
               <span>Repeats: {getRepeatDate(habit.lastCompleted, habit.daysUntilRepeat)}</span>
