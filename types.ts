@@ -29,7 +29,12 @@ interface SET_HABITS {
   payload: HabitInterface[]
 }
 
-export type ReducerAction = SET_USER_DATA | UPDATE_HABIT | DELETE_HABIT | SET_HABITS;
+interface UPDATE_ALERT {
+  type: "UPDATE_ALERT";
+  payload: string
+}
+
+export type ReducerAction = SET_USER_DATA | UPDATE_HABIT | DELETE_HABIT | SET_HABITS | UPDATE_ALERT;
 
 export interface ReducerState {
   T: any;

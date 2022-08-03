@@ -15,6 +15,7 @@ function userDataReducer(state: ReducerState, action: ReducerAction): any {
         ...state,
         user: action.payload,
         loading: false,
+        alert: ""
       };
     case "UPDATE_HABIT":
       let updatedHabitIndex = state.habits.findIndex(habit => habit.id == action.payload.id);
@@ -22,15 +23,24 @@ function userDataReducer(state: ReducerState, action: ReducerAction): any {
       return {
         ...state,
         habits: [...state.habits, action.payload],
+        alert: "Habit updated."
       };
     case "DELETE_HABIT":
       let deletedHabitIndex = state.habits.findIndex(habit => habit.id == action.payload);
       state.habits.splice(deletedHabitIndex, 1);
-      return state;
+      return {
+        ...state,
+        alert: "Habit deleted."
+      };
     case "SET_HABITS":
       return {
         ...state,
         habits: action.payload,
+      };
+    case "UPDATE_ALERT":
+      return {
+        ...state,
+        alert: action.payload
       };
     default: {
       //@ts-ignore-next: TS thinks this will never occur, but we'll keep it in just in case
