@@ -1,20 +1,14 @@
 import styles from "./Accordion.module.css"
-import { WiSunrise, WiDaySunny } from "react-icons/wi"
-import {BsMoonStars} from "react-icons/bs"
-import { FaEdit } from "react-icons/fa"
+
 import GemProgress from "./GemProgress"
 import Toggle from "./Toggle"
+import Checkbox from "./Checkbox"
 import { useState } from "react"
-import { TaskInterface } from '../../types'
 import { useUserData } from "../../helpers/UserProvider"
 import TimeOfDayIcon from "../../helpers/TimeOfDayIcon"
-import getRepeatDate from "../../helpers/getRepeatDate"
-import Link from "next/link"
 
 const Accordion = ( props: {
-  title: "Morning" | "Daytime" | "Evening",
-  tasks: TaskInterface[],
-  iconUrl: string,
+  title: "Morning" | "Daytime" | "Evening"
 }) => {
   const [isOpen, setIsOpen] = useState (false);
   const {state} = useUserData();
@@ -32,7 +26,10 @@ const Accordion = ( props: {
       <ul role="list">
         {state.habits.filter(habit => habit.timeOfDay == props.title.toLowerCase()).map((habit) => (
           <li className={styles.habit}>
-            <span>{habit.name}</span>
+            <label className={habit.complete ? styles.complete : ""}>
+              <Checkbox habitId={habit.id} />
+              <span>{habit.name}</span>
+            </label>
           </li>
         ))}
       </ul>

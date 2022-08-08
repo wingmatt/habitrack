@@ -10,23 +10,14 @@ export default function Dashboard() {
           <Accordion
             key="1"
             title="Morning"
-            iconUrl="something"
-            tasks={[
-              { complete: false, name: "mornin'" },
-              { complete: true, name: "Second morning thing" },
-            ]}
           ></Accordion>
           <Accordion
             key="2"
             title="Daytime"
-            iconUrl="something"
-            tasks={[{ complete: false, name: "howdy'" }]}
           ></Accordion>
           <Accordion
             key="3"
             title="Evening"
-            iconUrl="something"
-            tasks={[{ complete: false, name: "evenin'" }]}
           ></Accordion>
         </div>
       </AuthRequired>

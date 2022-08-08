@@ -1,9 +1,3 @@
-export interface TaskInterface {
-  name: string;
-  complete: boolean;
-  accessibleBy?: string[];
-}
-
 export interface Props {
   children: React.ReactNode;
 }
