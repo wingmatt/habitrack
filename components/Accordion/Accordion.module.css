@@ -35,3 +35,8 @@ gap: 4px;
   list-style: none;
   cursor: pointer;
 }
+
+.complete {
+  text-decoration: line-through;
+  opacity: .77;
+}
