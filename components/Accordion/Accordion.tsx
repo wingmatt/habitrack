@@ -25,9 +25,9 @@ const Accordion = ( props: {
       </summary>
       <ul role="list">
         {state.habits.filter(habit => habit.timeOfDay == props.title.toLowerCase()).map((habit) => (
-          <li className={styles.habit}>
+          <li  key={habit.id} className={styles.habit}>
             <label className={habit.complete ? styles.complete : ""}>
-              <Checkbox habitId={habit.id} />
+              <Checkbox habit={habit} />
               <span>{habit.name}</span>
             </label>
           </li>
