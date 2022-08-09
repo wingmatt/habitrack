@@ -7,15 +7,10 @@ interface CheckboxProps {
   habit: HabitInterface;
 }
 
-const updateCheckedStatus = (wasChecked: boolean | undefined, habit: HabitInterface, dispatch: any): void => {
-  // tell supabase to toggle the status
-  const newData = {
-    complete: !wasChecked,
-    ...habit
-  }
-  const supabaseResponse = updateHabit(habit, )
-
-  // Send supabase's response to the context
+const updateCheckedStatus = async (wasChecked: boolean | undefined, habit: HabitInterface, dispatch: any): void => {
+  habit.complete = !(habit.complete)
+  const response = await updateHabit(habit);
+  dispatch({type: "UPDATE_HABIT", payload: response})
 }
 
 const Checkbox = ({habit}: CheckboxProps) => {
@@ -23,12 +18,12 @@ const Checkbox = ({habit}: CheckboxProps) => {
   // TODO: Add testing to ensure this doesn't break when we refactor
   return (
     <>
-      {habit.complete ? <FiCheckSquare focusable="false" title="Checked" /> : <FiSquare focusable="false" title="Unchecked"/>}
+      {habit?.complete ? <FiCheckSquare focusable="false" title="Checked" /> : <FiSquare focusable="false" title="Unchecked"/>}
       <input className="sr-only"
         type="checkbox"
-        checked={habit.complete}
+        checked={habit?.complete}
         onChange={() => {
-          updateCheckedStatus(habit.complete, habit, dispatch)
+          updateCheckedStatus(habit?.complete, habit, dispatch)
         }}
       />
     </>
