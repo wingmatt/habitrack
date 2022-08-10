@@ -30,4 +30,6 @@ a {
   --color-primary-2: #45C4B0;
   --color-success: #9AEBA3;
   --color-light: #DAFDBA;
+  --header-height: 64px;
+  --gap: 16px;
 }
