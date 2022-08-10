@@ -51,7 +51,7 @@ export default function HabitEditor(props: HabitInterface) {
   return (
     <>
       <h1 className={styles.header}>New Habit</h1>
-      <form className={styles.editHabit}>
+      <form className={styles.editHabit} onSubmit={(event) => submitSave(event, form, dispatch)}>
         <label className={styles.block}>
           Name{" "}
           <input
@@ -133,8 +133,8 @@ export default function HabitEditor(props: HabitInterface) {
           />{" "}
           days
         </label>
-        <button type="submit" name="Save Habit" onClick={(event) => submitSave(event, form, dispatch)}>Save</button>
-        <button type="submit" name="Delete Habit" onClick={(event) => submitDelete(event, form, dispatch)}>Delete</button>
+        <button type="submit" name="Save Habit">Save</button>
+        <button type="button" name="Delete Habit" onClick={(event) => submitDelete(event, form, dispatch)}>Delete</button>
       </form>
     </>
   );
