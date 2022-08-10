@@ -40,3 +40,8 @@ gap: 4px;
   text-decoration: line-through;
   opacity: .77;
 }
+
+.habit:focus-within, .habit:hover {
+  color: var(--color-primary-1);
+  text-decoration: underline;
+}
