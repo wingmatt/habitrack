@@ -6,7 +6,7 @@ export default function Dashboard() {
   return (
     <Layout>
       <AuthRequired>
-        <div className="container" style={{ padding: "50px 0 100px 0" }}>
+        <div className="container">
           <Accordion
             key="1"
             title="Morning"
