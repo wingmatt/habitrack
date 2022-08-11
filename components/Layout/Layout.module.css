@@ -29,8 +29,7 @@
   width: 100%;
 }
 .main {
-  padding-top: 70px;
-  position: relative;
+  padding-top: calc(var(--header-height) + var(--gap))
 }
 
 .alert {
