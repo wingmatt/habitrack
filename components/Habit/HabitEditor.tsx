@@ -16,15 +16,21 @@ const submitSave = async (event: any, form: any, dispatch: any): Promise<void> =
   event.preventDefault();
   const formData = form.data;
   let response;
-  // Is the habit ID blank? If so, create a new habit in the context, then in the DB
+  let alert;
+  // If the form has no existing ID, then create a new habit instead
   if (formData.id == '') {
     delete formData.id;
     response = await createHabit(formData);
+    alert = "Habit created."
   } 
-  // If not, update the matching habit with updated info in the context, then in the DB
-  else response = await updateHabit(formData);
-  // dispatch an update to the habits here
-  dispatch({type:'UPDATE_HABIT', payload: response})
+  else {
+    response = await updateHabit(formData);
+    alert = "Habit updated."
+  }
+  dispatch({type:'UPDATE_HABIT', payload: {
+    habit: response,
+    alert: alert
+  }})
 }
 
 const submitDelete = async (event: any, form: any, dispatch: any): Promise<void> => {

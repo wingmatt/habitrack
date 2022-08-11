@@ -10,7 +10,10 @@ interface SET_USER_DATA {
 
 interface UPDATE_HABIT {
   type: "UPDATE_HABIT";
-  payload: HabitInterface
+  payload: {
+    habit: HabitInterface
+    alert: string
+  }
 }
 
 interface DELETE_HABIT {

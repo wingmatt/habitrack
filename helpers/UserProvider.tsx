@@ -18,12 +18,12 @@ function userDataReducer(state: ReducerState, action: ReducerAction): any {
         alert: ""
       };
     case "UPDATE_HABIT":
-      let updatedHabitIndex = state.habits.findIndex(habit => habit.id == action.payload.id);
+      let updatedHabitIndex = state.habits.findIndex(habit => habit.id == action.payload.habit.id);
       if (updatedHabitIndex) state.habits.splice(updatedHabitIndex, 1);
       return {
         ...state,
-        habits: [...state.habits, action.payload],
-        alert: "Habit updated."
+        habits: [...state.habits, action.payload.habit],
+        alert: action.payload.alert
       };
     case "DELETE_HABIT":
       let deletedHabitIndex = state.habits.findIndex(habit => habit.id == action.payload);

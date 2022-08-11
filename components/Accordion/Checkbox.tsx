@@ -10,7 +10,10 @@ interface CheckboxProps {
 const updateCheckedStatus = async (wasChecked: boolean | undefined, habit: HabitInterface, dispatch: any): void => {
   habit.complete = !(habit.complete)
   const response = await updateHabit(habit);
-  dispatch({type: "UPDATE_HABIT", payload: response})
+  dispatch({type: "UPDATE_HABIT", payload: {
+    habit: response,
+    alert: ''
+  }})
 }
 
 const Checkbox = ({habit}: CheckboxProps) => {
