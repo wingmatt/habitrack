@@ -2,9 +2,14 @@ import styles from "./Header.module.css";
 import Link from "next/link";
 import { FaGem, FaUserAstronaut } from "react-icons/fa";
 import { HiFire, HiMenu } from "react-icons/hi";
+import { useUserData } from "../../helpers/UserProvider";
 
-const HeaderLinks = () => (
+const HeaderLinks = () => {
+const {state} = useUserData();
+return (
   <ul role="list">
+  { state.user ?
+    <>
     <li>
       <Link href="/dashboard">
         <a>Dashboard</a>
@@ -20,22 +25,14 @@ const HeaderLinks = () => (
         <a>Progress</a>
       </Link>
     </li>
+    </> : 
+  <>
+  <li><Link href="/login"><a>Sign up or Login</a></Link></li>
+  </>
+  }
   </ul>
 );
-
-const GemTotal = ({ total }) => (
-  <>
-    <FaGem />
-    <span>{total}</span>
-  </>
-);
-
-const StreakTotal = ({ total }) => (
-  <>
-    <HiFire />
-    <span>{total}</span>
-  </>
-);
+}
 
 const StatCounter = ({ icon, stat, title }) => (
   <figure title={title}>
@@ -45,7 +42,7 @@ const StatCounter = ({ icon, stat, title }) => (
 );
 
 export default function Header() {
-  //TODO get stats from DB
+  const {state} = useUserData();
   return (
     <header className={styles.header}>
       <details className={styles.navSm}>
@@ -53,24 +50,27 @@ export default function Header() {
           <HiMenu />
         </summary>
         <nav>
-          <HeaderLinks />
+          <HeaderLinks state={state} />
         </nav>
       </details>
       <h1>
-        <Link href="/dashboard">
+        <Link href="/">
           <a>Habitrack</a>
         </Link>
       </h1>
       <nav className={styles.navLg}>
         <HeaderLinks />
       </nav>
-      <StatCounter icon={<FaGem />} stat="42" title="Total Gems" />
-      <StatCounter icon={<HiFire />} stat="17" title="Current Streak" />
+      {state.user ? <>
+      <StatCounter icon={<FaGem />} stat={state.user.gems} title="Total Gems" />
+      <StatCounter icon={<HiFire />} stat={state.user.streak} title="Current Streak" />
       <Link href="/profile">
         <a>
-          <FaUserAstronaut />
+        Profile <FaUserAstronaut />
         </a>
       </Link>
+      </> : "" }
+      
     </header>
   );
 }

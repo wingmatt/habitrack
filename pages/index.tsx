@@ -1,23 +1,12 @@
-import { useState, useEffect } from 'react'
-import { supabase } from '../utils/supabaseClient'
-import Auth from '../components/Auth'
-import Account from '../components/Account'
+import Layout from '../components/Layout'
 
 export default function Home() {
-  const [session, setSession] = useState(null)
 
-  useEffect(() => {
-    setSession(supabase.auth.session())
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
 
   return (
-    <div className="container" style={{ padding: '50px 0 100px 0' }}>
+    <Layout>
       <h1>Habitrack</h1>
       <p>The App that helps you stay on track with your habits!</p>
-    </div>
+    </Layout>
   )
 }
