@@ -3,6 +3,7 @@ import styles from "./HabitEditor.module.css";
 import { useState } from "react";
 import { createHabit, updateHabit, deleteHabit } from "../../helpers/updateUserData";
 import { useUserData } from "../../helpers/UserProvider";
+import { useRouter, NextRouter } from "next/router";
 
 const addAccessibleBy = () => {
   return "okay";
@@ -12,7 +13,7 @@ const removeAccessibleBy = (email: string) => {
 };
 
 //TODO: Use more specific types
-const submitSave = async (event: any, form: any, dispatch: any): Promise<void> => {
+const submitSave = async (event: any, form: any, dispatch: any, router: NextRouter): Promise<void> => {
   event.preventDefault();
   const formData = form.data;
   let response;
@@ -31,18 +32,21 @@ const submitSave = async (event: any, form: any, dispatch: any): Promise<void> =
     habit: response,
     alert: alert
   }})
+  router.push('/habits');
 }
 
-const submitDelete = async (event: any, form: any, dispatch: any): Promise<void> => {
+const submitDelete = async (event: any, form: any, dispatch: any, router: NextRouter): Promise<void> => {
   event.preventDefault();
   const habitId = form.data.id;
   const response = await deleteHabit(habitId);
   dispatch({type:'DELETE_HABIT', payload: response})
+  router.push('/habits');
 }
 
 export default function HabitEditor(props: HabitInterface) {
   const [form, setForm] = useState({ data: { ...props } });
   const {dispatch} = useUserData();
+  const router = useRouter();
   const handleChange = (event: {
     target: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
   }) => {
@@ -57,7 +61,7 @@ export default function HabitEditor(props: HabitInterface) {
   return (
     <>
       <h1 className={styles.header}>New Habit</h1>
-      <form className={styles.editHabit} onSubmit={(event) => submitSave(event, form, dispatch)}>
+      <form className={styles.editHabit} onSubmit={(event) => submitSave(event, form, dispatch, router)}>
         <label className={styles.block}>
           Name{" "}
           <input
@@ -140,7 +144,7 @@ export default function HabitEditor(props: HabitInterface) {
           days
         </label>
         <button type="submit" name="Save Habit">Save</button>
-        <button type="button" name="Delete Habit" onClick={(event) => submitDelete(event, form, dispatch)}>Delete</button>
+        <button type="button" name="Delete Habit" onClick={(event) => submitDelete(event, form, dispatch, router)}>Delete</button>
       </form>
     </>
   );
