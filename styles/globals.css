@@ -1,3 +1,13 @@
+:root {
+  --color-dark: #012030;
+  --color-primary-1: #13678A;
+  --color-primary-2: #45C4B0;
+  --color-success: #9AEBA3;
+  --color-light: #DAFDBA;
+  --header-height: 64px;
+  --gap: 16px;
+}
+
 html,
 body {
   padding: 0;
@@ -24,12 +34,42 @@ a {
   overflow: hidden;
 }
 
-:root {
-  --color-dark: #012030;
-  --color-primary-1: #13678A;
-  --color-primary-2: #45C4B0;
-  --color-success: #9AEBA3;
-  --color-light: #DAFDBA;
-  --header-height: 64px;
-  --gap: 16px;
+button {
+  background: var(--color-primary-1);
+  color: whitesmoke;
+  margin: 8px 0;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 var(--color-success);
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: var(--color-primary-2);
+  box-shadow: 3px 3px 0 var(--color-primary-1);
+}
+
+select {
+  background: white;
+  border-radius: 6px;
+  border: 1px solid var(--color-dark);
+}
+
+input, select {
+  padding: 8px;
+}
+label.inline, label.block {
+  display: flex;
+ }
+label.inline {
+  align-items: center;
+  gap: 8px;
+}
+
+label.block {
+  flex-flow: column;
+}
+input.small {
+  max-width: 8ch;
 }
