@@ -61,7 +61,10 @@ export default function Account({ session }) {
   }
 
   return (
-    <div className="form-widget">
+    <form className="form-widget" onSubmit={(event) => {
+        event.preventDefault();
+        updateProfile({ username, timezone })}
+      }>
       <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />
@@ -88,7 +91,7 @@ export default function Account({ session }) {
       <div>
         <button
           className="button block primary"
-          onClick={() => updateProfile({ username, timezone })}
+          type="submit"
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}
@@ -100,6 +103,6 @@ export default function Account({ session }) {
           Sign Out
         </button>
       </div>
-    </div>
+    </form>
   )
 }
